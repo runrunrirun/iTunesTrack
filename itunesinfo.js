@@ -24,7 +24,7 @@ function run(argv) {
       if (!thistrack) throw "No track data!";
     } catch (err) {
       console.log(err);
-      return -1; d
+      return -1;
     }
 
     // Create trackinfo string
