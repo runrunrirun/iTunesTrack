@@ -65,6 +65,7 @@ function run(argv) {
 
     // Create trackinfo string
     if (tr_type == "urlTrack" && streamTitle) {
+
       // If we find a streamTitle, it's an old-style Shoutcast stream
       // assumes that track or artist names don't contain dash
 
@@ -76,7 +77,9 @@ function run(argv) {
         trackinfo += `"${tr_title}" By: ${tr_artist} On: ${streamURL} 🎶`;
       }
     } else {
+      
       // Everything else looks the same, but we'll only add info if present in iTunes metadata
+
       if (doIRCcolor) {
         trackinfo += `${irc_bold}${irc_color}${irc_colorLightCyan}"${tr_title}"${irc_resetformat}`;
         if (tr_artist) {
