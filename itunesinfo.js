@@ -21,9 +21,9 @@ function run(argv) {
     app.includeStandardAdditions = true; // need this for clipboard functions
 
     const iTunes = Application("Music");
-    const thistrack = iTunes.currentTrack;
-    const streamTitle = iTunes.currentStreamTitle();
-    const streamURL = iTunes.currentStreamURL();
+    var thistrack = iTunes.currentTrack;
+    var streamTitle = iTunes.currentStreamTitle();
+    var streamURL = iTunes.currentStreamURL();
 
     try {
       if (!app) throw "Couldn't get current application!";
@@ -71,6 +71,11 @@ function run(argv) {
 
       tr_title = streamTitle.substring(streamTitle.indexOf("-") + 2);
       tr_artist = streamTitle.substring(0, streamTitle.indexOf("-"));
+      
+      // Check for an empty stream URL, this is a common issue
+      // If server does not provide one, give the stream name instead
+      if (!streamURL) { streamURL = thistrack.name() }
+      
       if (doIRCcolor) {
         trackinfo += `${irc_bold}${irc_color}${irc_colorLightCyan}"${tr_title}"${irc_color}${irc_resetformat} By: ${irc_color}${irc_colorLightGreen}${tr_artist}${irc_color} On: ${streamURL} 🎶`;
       } else {
